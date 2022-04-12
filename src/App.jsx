@@ -18,6 +18,8 @@ export default class App extends Component {
                     <Route path="swap" element={<Swap/>}/>
                     <Route path="browse" element={<Browse/>}/>
                     <Route path="detail" element={<TokenDetail/>}/>
+                    <Route path="me" element={<Me/>}/>
+                    <Route path="uploadArt" element={<UploadArt/>}/>
                     <Route path="" element = {<Navigate to="home" />} /> 
                   </Route>
                   <Route path="*" element = {<Navigate to="main" />} /> 
