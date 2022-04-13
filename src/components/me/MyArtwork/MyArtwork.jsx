@@ -8,12 +8,20 @@ export default class MyArtwork extends Component {
         tokenInfo:[]
     }
     //get all my tokeninfo
-    componentDidMount() {
+    async componentDidMount() {
         // same as browse
         // get with filters
-        get('url')
+        //get currentUser
+        let userAddr = ""
+        await get(`/api/v1/auth/user`)
+        .then((data) => {
+            userAddr = data.user.addr
+        })
+        // get all the token
+        // GET /v1/artworks/
+        get(`/api/v1/artworks?author=${userAddr}`)
         .then((data)=>{
-            this.setState({tokenInfo:data})
+            this.setState({tokenInfo:data.results})
         }).catch((error) => {
             console.log('error happen')
         })
@@ -29,7 +37,7 @@ export default class MyArtwork extends Component {
                 </div>
                 </div>
                 </div>
-                <Link className="btn btn-primary" role='button' style={{margin: 30}} to="/main/uploadArt">Upload Artworks</Link>
+                <Link className="btn btn-primary" role='button' style={{marginLeft: '45%'}} to="/main/uploadArt">Upload Artworks</Link>
                 <div className="table-responsive" style={{border: 0, borderCollapse: 'collapse', margin: 50}}>
                     <div className="table" style={{border: 0, borderCollapse: 'collapse'}}>
                         {

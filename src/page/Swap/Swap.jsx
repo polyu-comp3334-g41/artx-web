@@ -1,21 +1,40 @@
 import React, { Component } from 'react'
+import {get,post} from '../../utiles/request'
 
 export default class Swap extends Component {
     state = {
         makerTokenId:"",
         takerTokenId:"",
+        makerTokenImage:"",
+        takerTokenImage:""
     }
 
-    saveMakerId = (event) => {
+    saveMakerId = async (event) => {
+        let id = event.target.value
         this.setState({makerTokenId:event.target.value})
+        //get tokenInfo by id
+        await get(`/api/v1/artworks/${id}`)
+        .then((data) => {
+            this.setState({makerTokenImage:data.imageUrl})
+        }).catch((error) => {
+            console.log(error)
+        })
         
         // fetch data from backend
 
         // display pic
     }
 
-    saveTakerId = (event) => {
+    saveTakerId = async (event) => {
+        let id = event.target.value
         this.setState({takerTokenId:event.target.value})
+        //get tokenInfo by id
+        await get(`/api/v1/artworks/${id}`)
+        .then((data) => {
+            this.setState({takerTokenImage:data.imageUrl})
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     submit = async () => {
@@ -23,15 +42,26 @@ export default class Swap extends Component {
 
         // API call
         // POST /v1/swap-orders
+        // get currentUser
+        let userAddr = ""
+        await get(`/api/v1/auth/user`)
+        .then((data) => {
+            userAddr = data.user.addr
+        })
+        const {makerTokenId,takerTokenId} = this.state
+        post(`/api/v1/swap-orders?maker=${userAddr}`, {
+            makerTokenId:makerTokenId,
+            takerTokenId:takerTokenId
+        })
 
-    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //   await provider.send("eth_requestAccounts", []);
-    //   const signer = provider.getSigner();
-    //   const artXContract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+        //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+        //   await provider.send("eth_requestAccounts", []);
+        //   const signer = provider.getSigner();
+        //   const artXContract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 
-      // Assume logged in
-    //   artXContract.connect(signer).mint("http://artx.org/test")
-    //     .then(tx => console.log(tx))
+        // Assume logged in
+        //   artXContract.connect(signer).mint("http://artx.org/test")
+        //     .then(tx => console.log(tx))
     }
     
     render() {
@@ -45,8 +75,8 @@ export default class Swap extends Component {
                     </thead>
                     <tbody style={{border: 0, borderCollapse: 'collapse'}}>
                         <tr>
-                            <td align="right" style={{border: 0, borderCollapse: 'collapse'}}><img alt='' src="/assets/img/browse-1.jpg" style={{width: 500, height: 500}} /></td>
-                            <td style={{border: 0, borderCollapse: 'collapse'}}><img alt='' src="/assets/img/browse-2.jpg" style={{width: 500, height: 500}} align="left;" /></td>
+                            <td align="right" style={{border: 0, borderCollapse: 'collapse'}}><img alt='' src={this.state.makerTokenImage} style={{width: 500, height: 500}} /></td>
+                            <td style={{border: 0, borderCollapse: 'collapse'}}><img alt='' src={this.state.takerTokenImage} style={{width: 500, height: 500}} align="left;" /></td>
                         </tr>
                         <tr>
                         <td align="right" style={{border: 0, borderCollapse: 'collapse'}}>
