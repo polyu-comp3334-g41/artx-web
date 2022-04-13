@@ -5,9 +5,8 @@ export default class UploadArt extends Component {
     state ={
         artworkName:'',
         makerName:'',
-        time:'',
         description:'',
-        filePath:'',
+        imageUrl:'',
     }
 
     saveDescription = (event) => {
@@ -21,14 +20,10 @@ export default class UploadArt extends Component {
     saveArtworkName = (event) => {
         this.setState({artworkName:event.target.value})
     }
-
-    saveTime = (event) => {
-        this.setState({time:event.target.value})
-    }
     
-    saveFile = (event) => {
+    saveImage = (event) => {
         //save the file path
-        this.setState({filePath:event.target.value})
+        this.setState({imageUrl:event.target.value})
     }
 
     handleSubmit = (event) => {
@@ -36,7 +31,7 @@ export default class UploadArt extends Component {
     }
 
     reset = () => {
-        this.setState({description:"",artworkName:"",makerName:"",time:"",filePath:""})
+        this.setState({description:"",artworkName:"",makerName:"",imageUrl:""})
     }
     render() {
         return (
@@ -49,8 +44,6 @@ export default class UploadArt extends Component {
                     </div>
                     <div className="bg-light border rounded border-light pt-1 jumbotron py-5 px-4">
                     <div className="alert alert-success invisible mt-5" role="alert"><span id="notify" /></div>
-                    <h1>File Drop<br /></h1>
-                    <p><div className="form-label" ><input type='file' onChange={this.saveFile} value={this.state.filePath}/></div>Choose Files or drag the files to anywhere on this page.<br /></p>
                     <div className="table-responsive">
                         <table className="table">
                         <thead>
@@ -61,16 +54,16 @@ export default class UploadArt extends Component {
                         </thead>
                         <tbody>
                             <tr>
+                            <td>Image Url</td>
+                            <td><input type="text" style={{width: 200}} onChange={this.saveImage} value={this.state.imageUrl}/></td>
+                            </tr>
+                            <tr>
                             <td>Maker Name</td>
                             <td><input type="text" style={{width: 200}} onChange={this.saveMakerName} value={this.state.makerName}/></td>
                             </tr>
                             <tr>
                             <td>Artwork Name</td>
                             <td><input type="text" style={{width: 200}} onChange={this.saveArtworkName} value={this.state.artworkName}/></td>
-                            </tr>
-                            <tr>
-                            <td>Create Time</td>
-                            <td><input type="date" style={{width: 200}} onChange={this.saveTime} value={this.state.time}/></td>
                             </tr>
                             <tr>
                             <td>Description</td>

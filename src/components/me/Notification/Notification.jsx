@@ -3,8 +3,8 @@ import {useNavigate } from 'react-router-dom';
 
 class MyComponent extends Component {
     state = {
-        mySwapProposal:[1],
-        swapWithMe:[1]
+        mySwapProposal:[],
+        swapWithMe:[]
     }
 
     componentDidMount() {
