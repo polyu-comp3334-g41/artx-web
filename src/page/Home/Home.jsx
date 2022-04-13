@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 export default class Home extends Component {
+    //login function
+    login = () => {
+        
+    }
+
     render() {
         return (
             <div>
@@ -10,7 +15,7 @@ export default class Home extends Component {
                         <div className="text-center intro-text p-5 rounded bg-faded">
                         <h2 className="section-heading mb-4"><span className="section-heading-lower" /></h2>
                         <p className="mb-3">NFT represents the Non-Fungible Token,which is a special form of cryptocurrency.<br />All the artwork,&nbsp; book text, music or video even digital collectibles and online games can be verified by NFT's special certification methods to verify their unique value.</p>
-                        <div className="mx-auto intro-button" />
+                        <div class="mx-auto intro-button"></div><button class="btn btn-primary" type="button" onClick={this.login}>Login With Ethereum</button>
                         </div>
                     </div>
                     </div>
