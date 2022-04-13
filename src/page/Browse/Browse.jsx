@@ -4,7 +4,7 @@ import Item from '../../components/browse/Item/Item'
 
 export default class Browse extends Component {
     state = {
-        tokenInfo:[1],
+        tokenInfo:[],
     }
     componentDidMount() {
         //get all the token
