@@ -3,8 +3,8 @@ import {useNavigate } from 'react-router-dom';
 
 class MyComponent extends Component {
     state = {
-        mySwapProposal:[],
-        swapWithMe:[]
+        mySwapProposal:[1],
+        swapWithMe:[1]
     }
 
     componentDidMount() {
@@ -20,7 +20,7 @@ class MyComponent extends Component {
 
     //create the mySwapProposal data showing in the table
     createShowMyProposal() {
-        const {mySwapProposal} = this.props
+        const {mySwapProposal} = this.state
         let showingRow = []
         for(var i=0; i < mySwapProposal.length; i++) {
             let index = i
@@ -39,7 +39,7 @@ class MyComponent extends Component {
 
     //create the  SwapWithMe data showing in the table
     createShowSwapWithMe() {
-        const {swapWithMe} = this.props
+        const {swapWithMe} = this.state
         let showingRow = []
         for(var i=0; i < swapWithMe.length; i++) {
             let index = i
