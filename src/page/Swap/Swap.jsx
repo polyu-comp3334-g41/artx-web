@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { post } from '../../utiles/request'
+
 export default class Swap extends Component {
     state = {
         makerTokenId:"",
@@ -15,12 +15,9 @@ export default class Swap extends Component {
     }
 
     submit = async () => {
-        let BODY = {}
-        post(`url`,BODY)
-        .catch((error)=>{
-            console.log("some error happen")
-        })
+
     }
+    
     render() {
         return (
             <div>

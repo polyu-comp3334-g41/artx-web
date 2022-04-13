@@ -1,9 +1,38 @@
 import React, { Component } from 'react'
+import { post, get } from "../../utiles/request";
+import { ethers } from "ethers";
+
+const signMessage = async (message) => {
+  try {
+    console.log({ message });
+    if (!window.ethereum)
+      throw new Error("No crypto wallet found. Please install it.");
+
+    await window.ethereum.send("eth_requestAccounts");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const signature = await signer.signMessage(message);
+    const address = await signer.getAddress();
+
+    return {
+      signature,
+      address,
+    };
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
 export default class Home extends Component {
     //login function
-    login = () => {
-        
+    login = async () => {
+        const signed = await get("/v1/auth/nonce").then(res => signMessage(res.nonce))
+        post("/v1/auth/nonce", {
+            addr: signed.address,
+            signature: signed.signature
+        }).then(res => {
+            if (res.success) alert("Logged In!")
+        })
     }
 
     render() {
