@@ -26,8 +26,8 @@ const signMessage = async (message) => {
 export default class Home extends Component {
     //login function
     login = async () => {
-        const signed = await get("/v1/auth/nonce").then(res => signMessage(res.nonce))
-        post("/v1/auth/nonce", {
+        const signed = await get("/api/v1/auth/nonce").then(res => signMessage(res.nonce))
+        post("/api/v1/auth/nonce", {
             addr: signed.address,
             signature: signed.signature
         }).then(res => {
@@ -74,7 +74,6 @@ export default class Home extends Component {
                     </div>
                 </section>
             </div>
-
         )
     }
 }

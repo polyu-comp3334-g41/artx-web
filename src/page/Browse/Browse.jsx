@@ -7,7 +7,8 @@ export default class Browse extends Component {
         tokenInfo:[],
     }
     componentDidMount() {
-        //get all the token
+        // get all the token
+        // GET /v1/artworks/
         get('url')
         .then((data)=>{
             this.setState({tokenInfo:data})

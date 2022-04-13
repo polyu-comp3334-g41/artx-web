@@ -27,7 +27,13 @@ export default class UploadArt extends Component {
     }
 
     handleSubmit = (event) => {
-        //submit the data
+        // POST /v1/artworks
+        // fetch author address from eth provider
+
+        // Contract call
+
+        // Update token id
+        // PATCH /v1/artworks/{id}
     }
 
     reset = () => {
@@ -58,7 +64,7 @@ export default class UploadArt extends Component {
                             <td><input type="text" style={{width: 200}} onChange={this.saveImage} value={this.state.imageUrl}/></td>
                             </tr>
                             <tr>
-                            <td>Maker Name</td>
+                            <td>Author Address</td>
                             <td><input type="text" style={{width: 200}} onChange={this.saveMakerName} value={this.state.makerName}/></td>
                             </tr>
                             <tr>

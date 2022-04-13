@@ -9,6 +9,8 @@ export default class MyArtwork extends Component {
     }
     //get all my tokeninfo
     componentDidMount() {
+        // same as browse
+        // get with filters
         get('url')
         .then((data)=>{
             this.setState({tokenInfo:data})

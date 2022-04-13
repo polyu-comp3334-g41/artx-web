@@ -59,8 +59,13 @@ class MyComponent extends Component {
         return showingRow
     }
 
-    //Cancle the my swap proposal. Index is the index of the target swap proposal
+    //Cancel the my swap proposal. Index is the index of the target swap proposal
     cancelSwap = (index) => {
+        // Contract call
+
+        // API call
+        // DELETE /v1/swap-orders
+
         const {mySwapProposal} = this.state
         //delete the proposal in local
         let newProposal = []
@@ -74,28 +79,38 @@ class MyComponent extends Component {
 
     //Accept the proposal.Index is the index of the target proposal
     accept = (index) => {
-        const {swapWithMe} = this.state
-        //delete the proposal in local
-        let newProposal = []
-        for(let i = 0; i < swapWithMe.length;i++) {
-            if(i !== index) {
-                newProposal.push(swapWithMe[i])
-            }
+      // Contract call
+
+      // API call
+      // DELETE /v1/swap-orders
+
+      const { swapWithMe } = this.state;
+      //delete the proposal in local
+      let newProposal = [];
+      for (let i = 0; i < swapWithMe.length; i++) {
+        if (i !== index) {
+          newProposal.push(swapWithMe[i]);
         }
-        this.setState({swapWithMe:newProposal})
+      }
+      this.setState({ swapWithMe: newProposal });
     }
 
     //reject the proposal.Index is the index of the target proposal
     reject = (index) => {
-        const {swapWithMe} = this.state
-        //delete the proposal in local
-        let newProposal = []
-        for(let i = 0; i < swapWithMe.length;i++) {
-            if(i !== index) {
-                newProposal.push(swapWithMe[i])
-            }
+      // Contract call
+
+      // API call
+      // DELETE /v1/swap-orders
+      
+      const { swapWithMe } = this.state;
+      //delete the proposal in local
+      let newProposal = [];
+      for (let i = 0; i < swapWithMe.length; i++) {
+        if (i !== index) {
+          newProposal.push(swapWithMe[i]);
         }
-        this.setState({swapWithMe:newProposal})
+      }
+      this.setState({ swapWithMe: newProposal });
     }
 
     render() {

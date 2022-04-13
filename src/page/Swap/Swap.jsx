@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { get, post } from '../../utiles/request'
-import { CONTRACT_ADDRESS, ABI } from '../../utiles/con'
-import { ethers } from 'ethers'
 
 export default class Swap extends Component {
     state = {
@@ -14,7 +11,6 @@ export default class Swap extends Component {
         
         // fetch data from backend
 
-        
         // display pic
     }
 
@@ -23,10 +19,15 @@ export default class Swap extends Component {
     }
 
     submit = async () => {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
-      const artXContract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+        // Contract call
+
+        // API call
+        // POST /v1/swap-orders
+
+    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //   await provider.send("eth_requestAccounts", []);
+    //   const signer = provider.getSigner();
+    //   const artXContract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 
       // Assume logged in
     //   artXContract.connect(signer).mint("http://artx.org/test")
