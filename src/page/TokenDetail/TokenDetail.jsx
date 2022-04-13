@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import {useLocation} from 'react-router-dom';
 
 class MyComponent extends Component {
+    componentDidMount() {
+        const {tokenId} = this.props.location.state
+        //get tokenInfo by tokenId
+    }
     render() {
-        //get tokenInfo
-        const {tokenInfo} = this.props.location.state
-        //get all the need information from tokenInfo (need implement)
-        
         return (
             <div>
                 <div className="table-responsive" style={{border: 0, borderCollapse: 'collapse', margin: 50}}>
@@ -16,7 +16,7 @@ class MyComponent extends Component {
                     </thead>
                     <tbody style={{border: 0, borderCollapse: 'collapse'}}>
                         <tr>
-                        <td align="center;" width="55%;" style={{border: 0, borderCollapse: 'collapse'}}><img className="img-fluid d-flex mx-auto product-item-img mb-3 mb-lg-0 rounded" src="assets/img/browse-1.jpg" style={{height: 450}} /></td>
+                        <td align="center;" width="55%;" style={{border: 0, borderCollapse: 'collapse'}}><img alt='' className="img-fluid d-flex mx-auto product-item-img mb-3 mb-lg-0 rounded" src="assets/img/browse-1.jpg" style={{height: 450}} /></td>
                         <td align="center;" width="45%;" style={{border: 0, borderCollapse: 'collapse'}}>
                             <div className="bg-faded p-5 rounded" style={{height: 450, lineHeight: 30, fontSize: 20}}>
                             <p style={{fontSize: 20}}>Artwork Name:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...<br /></p>
