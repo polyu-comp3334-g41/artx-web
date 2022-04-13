@@ -14,8 +14,8 @@ class MyComponent extends Component {
     //Index is the index of the target swap proposal
     showDetail = (index) => {
         //get tokenId
-        const tokenId = ''
-        this.props.navigate(`/main/detail`, { state: { tokenId: tokenId}});
+        const _id = ''
+        this.props.navigate(`/main/detail`, { state: { id: _id}});
     }
 
     //create the mySwapProposal data showing in the table

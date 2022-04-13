@@ -8,12 +8,20 @@ export default class MyArtwork extends Component {
         tokenInfo:[]
     }
     //get all my tokeninfo
-    componentDidMount() {
+    async componentDidMount() {
         // same as browse
         // get with filters
-        get('url')
+        //get currentUser
+        let userAddr = ""
+        await get(`/api/v1/auth/user`)
+        .then((data) => {
+            userAddr = data.user.addr
+        })
+        // get all the token
+        // GET /v1/artworks/
+        get(`/api/v1/artworks?author=${userAddr}`)
         .then((data)=>{
-            this.setState({tokenInfo:data})
+            this.setState({tokenInfo:data.results})
         }).catch((error) => {
             console.log('error happen')
         })

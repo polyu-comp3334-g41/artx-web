@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {patch, post} from '../../utiles/request'
 
 export default class UploadArt extends Component {
     state ={
@@ -26,14 +27,34 @@ export default class UploadArt extends Component {
         this.setState({imageUrl:event.target.value})
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         // POST /v1/artworks
+        const {artworkName,makerName,description,imageUrl} = this.state
+        const BODY = {
+            title:artworkName,
+            description:description,
+            author:makerName,
+            imageUrl:imageUrl
+        }
+
+        let tokenId = ""
+        let _id = ""
+        await post(`/api/v1/artworks`,BODY)
+        .then((data) => {
+            tokenId = data.tokenId
+            _id = data._id
+        })
+        
         // fetch author address from eth provider
 
         // Contract call
 
         // Update token id
         // PATCH /v1/artworks/{id}
+        await patch(`/api/v1/artworks/${_id}`,{
+            imageUrl:imageUrl,
+            tokenId:tokenId
+        })
     }
 
     reset = () => {

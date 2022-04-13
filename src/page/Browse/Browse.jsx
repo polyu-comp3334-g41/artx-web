@@ -6,12 +6,12 @@ export default class Browse extends Component {
     state = {
         tokenInfo:[],
     }
-    componentDidMount() {
+    async componentDidMount() {
         // get all the token
         // GET /v1/artworks/
-        get('url')
+        get(`/api/v1/artworks`)
         .then((data)=>{
-            this.setState({tokenInfo:data})
+            this.setState({tokenInfo:data.results})
         }).catch((error) => {
             console.log('error happen')
         })
