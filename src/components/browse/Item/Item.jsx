@@ -12,7 +12,7 @@ class MyComponent extends Component {
         //need get the information of a token from props
         return (
             <div>
-                <div className="card" onclick="document.location='description.html'" style={{background: 'var(--bs-white)',width:'32.33%', float: 'left',display:'inline',marginLeft:"1%",marginBottom:"1%"}}>
+                <div className="card" style={{background: 'var(--bs-white)',width:'32.33%', float: 'left',display:'inline',marginLeft:"1%",marginBottom:"1%"}}>
                     <img alt="" role ='button' className="card-img-top w-100 d-block" src="/assets/img/browse-1.jpg" style={{height: 300, width: 100}} onClick={this.showDetail}/>
                     <div className="card-body">
                         <p className="text-white" style={{color: 'var(--bs-secondary)',bsBodyColor: 'var(--bs-secondary)', borderColor: 'var(--bs-secondary)',bsBodyBg: 'var(--bs-secondary)', opacity: 1, filter: 'brightness(0%) contrast(171%) grayscale(0%)'}}>TokenID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...</p>
