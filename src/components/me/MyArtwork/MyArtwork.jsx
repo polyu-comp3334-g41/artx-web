@@ -37,7 +37,7 @@ export default class MyArtwork extends Component {
                 </div>
                 </div>
                 </div>
-                <Link className="btn btn-primary" role='button' style={{margin: 30}} to="/main/uploadArt">Upload Artworks</Link>
+                <Link className="btn btn-primary" role='button' style={{marginLeft: '45%'}} to="/main/uploadArt">Upload Artworks</Link>
                 <div className="table-responsive" style={{border: 0, borderCollapse: 'collapse', margin: 50}}>
                     <div className="table" style={{border: 0, borderCollapse: 'collapse'}}>
                         {

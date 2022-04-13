@@ -17,8 +17,7 @@ class MyComponent extends Component {
         })
     }
     render() {
-        let {title,tokenId,author,description,imageUrl} = this.state.tokenInfo
-        tokenId = Math.random() * 100000
+        let {title,_id,author,description,imageUrl} = this.state.tokenInfo
         return (
             <div>
                 <div className="table-responsive" style={{border: 0, borderCollapse: 'collapse', margin: 50}}>
@@ -32,7 +31,7 @@ class MyComponent extends Component {
                         <td align="center;" width="45%;" style={{border: 0, borderCollapse: 'collapse'}}>
                             <div className="bg-faded p-5 rounded" style={{height: 450, lineHeight: 30, fontSize: 20}}>
                             <p style={{fontSize: 20}}>Artwork Name:{title}<br /></p>
-                            <p style={{fontSize: 20}}><br />Token ID:{tokenId}<br /><br /></p>
+                            <p style={{fontSize: 20}}><br />Token ID:{_id}<br /><br /></p>
                             <p>Maker:{author}<br /><br /></p>
                             <p><br />Description:{description}<br /></p>
                             </div>
