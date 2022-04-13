@@ -1,7 +1,106 @@
 import React, { Component } from 'react'
+import {useNavigate } from 'react-router-dom';
 
-export default class Notification extends Component {
+class MyComponent extends Component {
+    state = {
+        mySwapProposal:[],
+        swapWithMe:[]
+    }
+
+    componentDidMount() {
+        //get my swap proposal and who want to swap with me
+    }
+
+    //Index is the index of the target swap proposal
+    showDetail = (index) => {
+        //get tokenId
+        const tokenId = ''
+        this.props.navigate(`/main/detail`, { state: { tokenId: tokenId}});
+    }
+
+    //create the mySwapProposal data showing in the table
+    createShowMyProposal() {
+        const {mySwapProposal} = this.props
+        let showingRow = []
+        for(var i=0; i < mySwapProposal.length; i++) {
+            let index = i
+            showingRow.push(
+                <tr key={index}>
+                    {/*show my propoal data */}
+                    <td style={{color: 'var(--bs-warning)'}}><div role='button' onClick={()=>this.showDetail(index)}>&nbsp;Maker Token</div></td>
+                    <td style={{color: 'var(--bs-warning)'}}><div role='button' onClick={()=>this.showDetail(index)}>Taker Token</div></td>
+                    <td style={{color: 'var(--bs-warning)'}}><button className="btn btn-primary" type="button" onClick={() => this.cancelSwap(index)}>Cancel Swap</button></td>
+                </tr>
+            )
+            
+        }
+        return showingRow
+    }
+
+    //create the  SwapWithMe data showing in the table
+    createShowSwapWithMe() {
+        const {swapWithMe} = this.props
+        let showingRow = []
+        for(var i=0; i < swapWithMe.length; i++) {
+            let index = i
+            showingRow.push(
+                <tr key={index}>
+                    {/*show swap with me data */}
+                    <td style={{color: 'var(--bs-warning)'}}><div role='button' onClick={()=>this.showDetail(index)}>&nbsp;Maker Token</div></td>
+                    <td style={{color: 'var(--bs-warning)'}}><div role='button' onClick={()=>this.showDetail(index)}>Taker Token</div></td>
+                    <td style={{color: 'var(--bs-warning)'}}>
+                        <button className="btn btn-primary" type="button" onClick={() => this.accept(index)}>Accept</button>
+                        <button className="btn btn-primary" type="button" style={{marginLeft: 30}} onClick={() => this.reject(index)}>Reject</button>
+                    </td>
+                </tr>
+            )
+            
+        }
+        return showingRow
+    }
+
+    //Cancle the my swap proposal. Index is the index of the target swap proposal
+    cancelSwap = (index) => {
+        const {mySwapProposal} = this.state
+        //delete the proposal in local
+        let newProposal = []
+        for(let i = 0; i < mySwapProposal.length;i++) {
+            if(i !== index) {
+                newProposal.push(mySwapProposal[i])
+            }
+        }
+        this.setState({mySwapProposal:newProposal})
+    }
+
+    //Accept the proposal.Index is the index of the target proposal
+    accept = (index) => {
+        const {swapWithMe} = this.state
+        //delete the proposal in local
+        let newProposal = []
+        for(let i = 0; i < swapWithMe.length;i++) {
+            if(i !== index) {
+                newProposal.push(swapWithMe[i])
+            }
+        }
+        this.setState({swapWithMe:newProposal})
+    }
+
+    //reject the proposal.Index is the index of the target proposal
+    reject = (index) => {
+        const {swapWithMe} = this.state
+        //delete the proposal in local
+        let newProposal = []
+        for(let i = 0; i < swapWithMe.length;i++) {
+            if(i !== index) {
+                newProposal.push(swapWithMe[i])
+            }
+        }
+        this.setState({swapWithMe:newProposal})
+    }
+
     render() {
+        const showingMyProposal = this.createShowMyProposal.bind(this)()
+        const showingSwapWithMe = this.createShowSwapWithMe.bind(this)()
         return (
             <div>
                 <div className="container">
@@ -21,16 +120,7 @@ export default class Notification extends Component {
                         </tr>
                     </thead>
                     <tbody style={{border: 0, borderCollapse: 'collapse'}}>
-                        <tr style={{border: 0, borderCollapse: 'collapse'}}>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">&nbsp;Maker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">Taker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}}><button className="btn btn-primary" type="button">Cancel Swap</button></td>
-                        </tr>
-                        <tr>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">&nbsp;Maker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">Taker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}}><button className="btn btn-primary" type="button">Cancel Swap</button></td>
-                        </tr>
+                        {showingMyProposal}
                     </tbody>
                     </table>
                 </div>
@@ -44,16 +134,7 @@ export default class Notification extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">Maker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">Taker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}}><button className="btn btn-primary" type="button">Accept</button><button className="btn btn-primary" type="button" style={{marginLeft: 30}}>Reject</button></td>
-                        </tr>
-                        <tr>
-                        <td style={{color: 'var(--bs-warning)'}} onclick="document.location='description.html'">Maker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}} onclick>Taker Token</td>
-                        <td style={{color: 'var(--bs-warning)'}}><button className="btn btn-primary" type="button">Accept</button><button className="btn btn-primary" type="button" style={{marginLeft: 30}}>Reject</button></td>
-                        </tr>
+                        {showingSwapWithMe}
                     </tbody>
                     </table>
                 </div>
@@ -61,3 +142,10 @@ export default class Notification extends Component {
         )
     }
 }
+
+function Notification(props) {
+    let navigate = useNavigate();
+    return <MyComponent {...props} navigate={navigate} />
+}
+
+export default Notification

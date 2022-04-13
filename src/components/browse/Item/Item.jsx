@@ -3,9 +3,9 @@ import {useNavigate } from 'react-router-dom';
 
 class MyComponent extends Component {
     showDetail = () => {
-        //get tokenInfo from props
-        const {tokenInfo} = this.props
-        this.props.navigate(`/main/detail`, { state: { tokenInfo: tokenInfo}});
+        //get tokenId
+        let tokenId = ''
+        this.props.navigate(`/main/detail`, { state: { tokenId: tokenId}});
     }
 
     render() {

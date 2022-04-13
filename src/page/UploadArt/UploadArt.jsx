@@ -34,6 +34,10 @@ export default class UploadArt extends Component {
     handleSubmit = (event) => {
         //submit the data
     }
+
+    reset = () => {
+        this.setState({description:"",artworkName:"",makerName:"",time:"",filePath:""})
+    }
     render() {
         return (
             <div>
@@ -46,7 +50,7 @@ export default class UploadArt extends Component {
                     <div className="bg-light border rounded border-light pt-1 jumbotron py-5 px-4">
                     <div className="alert alert-success invisible mt-5" role="alert"><span id="notify" /></div>
                     <h1>File Drop<br /></h1>
-                    <p><div className="form-label" ><input type='file' onChange={this.saveFile}/></div>Choose Files or drag the files to anywhere on this page.<br /></p>
+                    <p><div className="form-label" ><input type='file' onChange={this.saveFile} value={this.state.filePath}/></div>Choose Files or drag the files to anywhere on this page.<br /></p>
                     <div className="table-responsive">
                         <table className="table">
                         <thead>
@@ -58,33 +62,33 @@ export default class UploadArt extends Component {
                         <tbody>
                             <tr>
                             <td>Maker Name</td>
-                            <td><input type="text" style={{width: 200}} onChange={this.saveMakerName}/></td>
+                            <td><input type="text" style={{width: 200}} onChange={this.saveMakerName} value={this.state.makerName}/></td>
                             </tr>
                             <tr>
                             <td>Artwork Name</td>
-                            <td><input type="text" style={{width: 200}} onChange={this.saveArtworkName}/></td>
+                            <td><input type="text" style={{width: 200}} onChange={this.saveArtworkName} value={this.state.artworkName}/></td>
                             </tr>
                             <tr>
                             <td>Create Time</td>
-                            <td><input type="date" style={{width: 200}} onChange={this.saveTime}/></td>
+                            <td><input type="date" style={{width: 200}} onChange={this.saveTime} value={this.state.time}/></td>
                             </tr>
                             <tr>
                             <td>Description</td>
-                            <td><input type="text" style={{height: 100, width: 300}} id="description" onChange={this.saveDescription}/></td>
+                            <td><input type="text" style={{height: 100, width: 300}} id="description" onChange={this.saveDescription} value={this.state.description}/></td>
                             </tr>
                         </tbody>
                         </table>
                     </div>
                     <form action encType="multipart/form-data">
                         <button className="btn btn-outline-primary d-block w-100" type="button" onClick={this.handleSubmit}>Submit</button>
-                        <button className="btn btn-danger mt-5" type="reset" onClick="clearFiles()">Reset</button>
+                        <button className="btn btn-danger mt-5" type="reset" onClick={this.reset}>Reset</button>
                     </form>
                     </div>
                     <div className="text-center bg-light border rounded border-dark shadow-lg p-3">
                     <div className="row">
                         <div className="col"><small className="form-text">The Artwork is shown below:</small></div>
                     </div>
-                    <div><img id="image_preview" width={100} /></div><Link role='button' className="btn btn-warning btn-sm m-3" to='/main/me'>Close</Link>
+                    <div><img alt='' id="image_preview" width={100} /></div><Link role='button' className="btn btn-warning btn-sm m-3" to='/main/me'>Close</Link>
                     </div>
                 </div>
             </div>
