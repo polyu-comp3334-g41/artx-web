@@ -43,13 +43,16 @@ export default class Swap extends Component {
     // Contract call
     const artXContract = await getContract();
     // Contract call
-    artXContract.makeSwap(maker.tokenId, taker.tokenId).then((tr) => {
+    console.log(`makeSwap(${maker.tokenId}, ${taker.tokenId})`)
+    artXContract.makeSwap(maker.tokenId, taker.tokenId, {gasLimit: 1000000}).then((tr) => {
       alert(
         "Transaction sent: " +
           tr.hash +
           "\n\nPlease patiently wait for it to be confirmed..."
       );
-    });
+    }).catch(err => {
+        alert(err)
+    })
 
     const filter = {
       address: CONTRACT_ADDRESS,
@@ -59,14 +62,14 @@ export default class Swap extends Component {
 
     console.log(maker)
 
-    provider.on(filter, async (log) => {
+    provider.once(filter, async (log) => {
       console.log(log);
       await post(`/api/v1/swap-orders?maker=${maker.author}`, {
         makerTokenId: maker._id,
         takerTokenId: taker._id,
       });
 
-      alert("You have successfully proposed a swap!");
+      alert("Successfully proposed a swap!");
     });
   };
 

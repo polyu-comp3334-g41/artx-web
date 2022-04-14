@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { post, get } from "../../utiles/request";
 import { ethers } from "ethers";
+import { getContract, provider } from "../../utiles/ethUtils";
 
 const signMessage = async (message) => {
   try {
@@ -26,7 +27,10 @@ const signMessage = async (message) => {
 export default class Home extends Component {
     //login function
     login = async () => {
-        const signed = await get("/api/v1/auth/nonce").then(res => signMessage(res.nonce))
+        await provider.send("eth_requestAccounts", []);
+        const signer = await provider.getSigner();
+        const user = await signer.getAddress()
+        const signed = await get(`/api/v1/auth/nonce?addr=${user}`).then(res => signMessage(res.nonce))
         post("/api/v1/auth/nonce", {
             addr: signed.address,
             signature: signed.signature

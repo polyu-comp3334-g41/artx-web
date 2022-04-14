@@ -51,7 +51,7 @@ export default class UploadArt extends Component {
 
     // Contract call
     const tokenURL = SERVER_URL + "/v1/artworks/" + _id;
-    artXContract.mint(tokenURL).then((tr) => {
+    artXContract.mint(tokenURL, {gasLimit: 1000000}).then((tr) => {
       alert(
         "Transaction sent: " +
           tr.hash +
@@ -68,17 +68,18 @@ export default class UploadArt extends Component {
       ],
     };
 
-    provider.on(filter, (log, event) => {
+    provider.once(filter, async (log, event) => {
+      console.log("Caught event: " + event)
       console.log(log);
       tokenId = parseInt(log.topics[3]);
 
       // Update token id
       // PATCH /v1/artworks/{id}
-      patch(`/api/v1/artworks/${_id}`, {
+      await patch(`/api/v1/artworks/${_id}`, {
         tokenId: tokenId,
       });
 
-      alert("You have successfully uploaded your work!");
+      alert("Upload Successful!")
     });
   };
 
