@@ -9,7 +9,7 @@ export default class Browse extends Component {
     async componentDidMount() {
         // get all the token
         // GET /v1/artworks/
-        get(`/api/v1/artworks`)
+        get(`/api/v1/artworks?limit=100`)
         .then((data)=>{
             this.setState({tokenInfo:data.results})
         }).catch((error) => {

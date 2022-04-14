@@ -1,3 +1,4 @@
+export const SERVER_URL = "localhost:8080";
 export const CONTRACT_ADDRESS = "0xacCDE0BC768341b65029b4847c616eAeca9B8CBc";
 export const ABI = [
     {
