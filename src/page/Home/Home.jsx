@@ -26,7 +26,12 @@ const signMessage = async (message) => {
 export default class Home extends Component {
     //login function
     login = async () => {
-        const signed = await get("/api/v1/auth/nonce").then(res => signMessage(res.nonce))
+        await window.ethereum.send("eth_requestAccounts");
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+
+        const signed = await get(`/api/v1/auth/nonce?addr=${address}`).then(res => signMessage(res.nonce))
         post("/api/v1/auth/nonce", {
             addr: signed.address,
             signature: signed.signature
